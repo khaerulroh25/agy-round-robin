@@ -6,31 +6,49 @@ Tidak ada batasan jumlah akun: Anda bisa menggunakan **2 akun, 3 akun, 5 akun, 1
 
 ---
 
-## ➕ Cara Menambah Akun Baru Kapan Saja
+## 💻 Panduan Pasang di Laptop / Komputer Baru
 
-Jika ke depannya Anda ingin menambah Akun #3, #4, #5, dst., Anda **tidak perlu mengedit kode sama sekali**. Cukup jalankan:
+Jika Anda ingin menggunakan sistem ini di laptop lain:
+
+### Langkah 1: Prasyarat di Laptop Baru
+1. Pastikan **Antigravity CLI (`agy`)** sudah terpasang.
+2. Pastikan **Python** sudah terpasang.
+
+### Langkah 2: Salin Folder Proyek Ini
+Salin folder `agy-round-robin` ini ke laptop baru Anda (bisa lewat Flashdisk, Git repo, zip, dll.).
+
+### Langkah 3: Jalankan Installer Otomatis
+Buka folder `agy-round-robin` di laptop baru, lalu:
+* Cukup **klik dua kali (*double-click*) file `install.bat`**  
+  *(Atau jalankan `.\install.ps1` lewat PowerShell)*.
+
+### Langkah 4: Login Akun Anda
+Buka terminal baru di laptop baru, lalu tambahkan akun Anda satu per satu:
+```bash
+agy-rr add    # Untuk Akun #1
+agy-rr add    # Untuk Akun #2
+agy-rr add    # Untuk Akun #3 (jika ada)
+```
+
+Selesai! `agy-rr` langsung siap digunakan di laptop baru.
+
+---
+
+## ➕ Cara Menambah Akun Baru Kapan Saja
 
 ```bash
 agy-rr add
 ```
-
-Sistem akan otomatis:
-1. Mendeteksi nomor akun berikutnya.
-2. Membuka browser untuk login akun Google baru Anda.
-3. Mengambil dan menyimpan kredensialnya ke profil baru.
-4. Memasukkannya langsung ke antrean round-robin!
+Sistem akan otomatis membuka browser untuk login akun Google baru dan memasukkannya ke antrean round-robin.
 
 ---
 
 ## ➖ Cara Menghapus Akun Tertentu
 
-Jika ada akun yang masa langganannya habis atau ingin dikeluarkan:
-
 ```bash
 agy-rr remove <nomor>
 ```
-*Contoh*: `agy-rr remove 3`  
-Nomor akun sisanya akan otomatis dirapikan kembali secara berurutan.
+*Contoh:* `agy-rr remove 3` (sisa akun otomatis dirapikan kembali urutannya).
 
 ---
 
@@ -39,37 +57,7 @@ Nomor akun sisanya akan otomatis dirapikan kembali secara berurutan.
 ```bash
 agy-rr usage
 ```
-Akan menampilkan sisa kuota (`Weekly Limit Remaining`, `Five Hour Limit Remaining`) untuk semua akun yang sedang aktif.
-
----
-
-## 💡 Cara Penggunaan Sehari-hari
-
-### 1. Buka Sesi CLI (Round-Robin Otomatis)
-```bash
-agy-rr
-```
-Setiap kali dijalankan, sistem akan memutar giliran akun secara adil:
-$$\text{Akun 1} \longrightarrow \text{Akun 2} \longrightarrow \text{Akun 3} \dots \longrightarrow \text{Akun N}$$
-
-### 2. Prompt Singkat / Non-Interaktif (`-p`)
-```bash
-agy-rr -p "Buat endpoint API login menggunakan Express.js"
-```
-
-### 3. Memilih Akun Tertentu Secara Langsung
-```bash
-# Langsung memakai Akun #2:
-agy-rr --acc 2
-
-# Langsung memakai Akun #3 untuk prompt tertentu:
-agy-rr --acc 3 -p "Jelaskan konsep Dependency Injection"
-```
-
-### 4. Cek Status Akun dan Antrean Giliran
-```bash
-agy-rr status
-```
+Menampilkan sisa kuota dan jam reset waktu lokal Indonesia (WIB) untuk semua akun.
 
 ---
 
@@ -78,10 +66,9 @@ agy-rr status
 | Perintah | Deskripsi |
 |---|---|
 | `agy-rr` | Jalankan agy dengan akun giliran berikutnya |
-| `agy-rr add` | **Tambah akun baru (dinamis tanpa batas)** |
-| `agy-rr remove <nomor>` | **Hapus akun tertentu dan rapikan antrean** |
-| `agy-rr usage` | **Cek sisa kuota semua akun sekaligus** |
-| `agy-rr usage <nomor>` | Cek sisa kuota akun tertentu saja |
-| `agy-rr status` | Lihat daftar akun aktif dan antrean saat ini |
+| `agy-rr add` | **Tambah akun baru ke antrean** |
+| `agy-rr remove <nomor>` | **Hapus akun dan rapikan antrean** |
+| `agy-rr usage` | **Cek kuota seluruh akun (WIB)** |
+| `agy-rr status` | Lihat daftar akun aktif dan antrean |
 | `agy-rr --acc <nomor>` | Jalankan agy langsung dengan akun tertentu |
-| `agy-rr login <nomor>` | Login ulang jika token akun tertentu kedaluwarsa |
+| `agy-rr login <nomor>` | Login ulang jika token akun kedaluwarsa |
